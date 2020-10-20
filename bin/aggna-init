@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+/*
+ * @Author       : tongzonghua
+ * @Date         : 2020-10-20 22:56:13
+ * @LastEditors  : tongzonghua
+ * @LastEditTime : 2020-10-21 02:40:12
+ * @Email        : tongzonghua@360.cn
+ * @Description  : 
+ * @FilePath     : /cli/aggna-cli/bin/aggna-init
+ */
+const program = require("commander")
+const Project = require('../src/project')
+program.storeOptionsAsProperties(false)
+program.option('--name [name]', '项目名称').option('--desc [description]', '项目介绍').parse(process.argv)
+
+const { name, description, initTool, author, version } = program;
+const args = program.args;
+
+const projectName = args[0] || name;
+
+const project = new Project({
+  projectName, description, initTool, author, version
+})
+
+project.create()

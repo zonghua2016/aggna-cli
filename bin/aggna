@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+/*
+ * @Author       : tongzonghua
+ * @Date         : 2020-10-20 22:56:13
+ * @LastEditors  : tongzonghua
+ * @LastEditTime : 2020-10-21 02:40:28
+ * @Email        : tongzonghua@360.cn
+ * @Description  : 
+ * @FilePath     : /cli/aggna-cli/bin/aggna
+ */
+
+const program = require('commander')
+const { exec } = require('child_process')
+const { logPackageVersion, greeting, config } = require('../src/utils')
+
+logPackageVersion();
+
+program
+  .usage('<command> [options]')
+  .version(config.version)
+  .description(greeting(config.name));
+
+program
+  .command('init', `🐳 使用 ${config.name} 初始化项目`)
+  .action((...args) => exec('init', ...args));
+
+program.command('help [-h]')
+  .description('🧳 查看帮助').action((...args) => program.help())
+
+program.parse(process.argv);
+if (!program.args.length) {
+  program.help();
+}
