@@ -2,9 +2,9 @@
  * @Author       : tongzonghua
  * @Date         : 2020-10-20 22:56:14
  * @LastEditors  : tongzonghua
- * @LastEditTime : 2020-10-21 02:41:22
+ * @LastEditTime : 2021-03-31 10:18:08
  * @Email        : tongzonghua@360.cn
- * @Description  : 
+ * @Description  : 工具库
  * @FilePath     : /cli/aggna-cli/src/utils.js
  */
 
@@ -12,7 +12,7 @@ const path = require('path');
 const fse = require('fs-extra');
 const { say } = require('cfonts')
 const chalk = require('chalk')
-const axios = require('axios')
+const ora = require('ora')
 const { INJECT_FILES } = require('./constans')
 
 const getRootPath = () => path.resolve(__dirname, './../')
@@ -55,15 +55,4 @@ exports.greeting = (text = '') => {
     })
   } else console.log(chalk.yellow.bold(`\n  aggna-cli`))
   console.log()
-}
-
-// 查询模板仓库
-exports.updateCli = async () => {
-  const res = await axios({ url: 'https://api.github.com/users/zonghua2016/repos', method: 'GET' })
-  if (res.status === 200) {
-    res.data.forEach(repo => {
-      console.log(111, repo.id, repo.name, repo.full_name);
-    })
-    console.log(1111, res.status);
-  }
 }

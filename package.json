@@ -1,6 +1,6 @@
 {
   "name": "aggna-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "阿格娜(aggna)，一个轻量的脚手架",
   "author": "",
   "main": "index.js",
